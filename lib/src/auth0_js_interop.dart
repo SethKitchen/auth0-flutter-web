@@ -25,11 +25,11 @@ Future<Auth0> createAuth0Client(Auth0ClientOptions options) {
 abstract class _Auth0JS{
   @JS() external _Promise<void> loginWithPopup(PopupLoginOptions options, PopupConfigOptions config);
   @JS() external void logout(LogoutOptions options);
-  @JS() external _Promise<String?> getTokenWithPopup(GetTokenWithPopupOptions options, PopupConfigOptions config);
-  @JS() external _Promise<String?> getTokenSilently(GetTokenSilentlyOptions options);
-  @JS() external _Promise<Map<String, dynamic>?> getUser(GetUserOptions options);
-  @JS() external _Promise<Map<String, dynamic>?> getIdTokenClaims(GetIdTokenClaimsOptions options);
-  @JS() external _Promise<bool?> isAuthenticated();
+  @JS() external _Promise<String> getTokenWithPopup(GetTokenWithPopupOptions options, PopupConfigOptions config);
+  @JS() external _Promise<String> getTokenSilently(GetTokenSilentlyOptions options);
+  @JS() external _Promise<Map<String, dynamic>> getUser(GetUserOptions options);
+  @JS() external _Promise<Map<String, dynamic>> getIdTokenClaims(GetIdTokenClaimsOptions options);
+  @JS() external _Promise<bool> isAuthenticated();
 }
 
 class Auth0 {
@@ -37,22 +37,22 @@ class Auth0 {
 
   Auth0._(this._auth0js);
 
-  Future<void> loginWithPopup({PopupLoginOptions? options = null, PopupConfigOptions? config = null}) {
+  Future<void> loginWithPopup({required PopupLoginOptions options, required PopupConfigOptions config}) {
     return promiseToFuture(_auth0js.loginWithPopup(options ?? jsify({}), config ?? jsify({})));
   }
 
-  void logout({LogoutOptions? options = null}) => _auth0js.logout(options ?? jsify({}));
+  void logout({required LogoutOptions options}) => _auth0js.logout(options ?? jsify({}));
 
-  Future<String> getTokenWithPopup({GetTokenWithPopupOptions? options = null, PopupConfigOptions? config = null}){
+  Future<String> getTokenWithPopup({required GetTokenWithPopupOptions options, required PopupConfigOptions config}){
     return promiseToFuture(_auth0js.getTokenWithPopup(options ?? jsify({}), config ?? jsify({})));
   }
 
-  Future<String> getTokenSilently({GetTokenSilentlyOptions? options = null}){
+  Future<String> getTokenSilently({required GetTokenSilentlyOptions options}){
     return promiseToFuture(_auth0js.getTokenSilently(options ?? jsify({})));
   }
   
-  Future<Map<String, dynamic>?> getUser({GetUserOptions? options = null}) => promiseToFutureAsMap(_auth0js.getUser(options ?? jsify({})));
-  Future<Map<String, dynamic>?> getIdTokenClaims({GetIdTokenClaimsOptions? options = null}) => promiseToFutureAsMap(_auth0js.getIdTokenClaims(options ?? jsify({})));
+  Future<Map<String, dynamic>?> getUser({required GetUserOptions options}) => promiseToFutureAsMap(_auth0js.getUser(options ?? jsify({})));
+  Future<Map<String, dynamic>?> getIdTokenClaims({required GetIdTokenClaimsOptions options}) => promiseToFutureAsMap(_auth0js.getIdTokenClaims(options ?? jsify({})));
 
   Future<bool> isAuthenticated() => promiseToFuture(_auth0js.isAuthenticated());
 }
