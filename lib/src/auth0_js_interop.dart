@@ -25,11 +25,11 @@ Future<Auth0> createAuth0Client(Auth0ClientOptions options) {
 abstract class _Auth0JS{
   @JS() external _Promise<void> loginWithPopup(PopupLoginOptions options, PopupConfigOptions config);
   @JS() external void logout(LogoutOptions options);
-  @JS() external _Promise<String> getTokenWithPopup(GetTokenWithPopupOptions options, PopupConfigOptions config);
-  @JS() external _Promise<String> getTokenSilently(GetTokenSilentlyOptions options);
-  @JS() external _Promise<Map<String, dynamic>> getUser(GetUserOptions options);
-  @JS() external _Promise<Map<String, dynamic>> getIdTokenClaims(GetIdTokenClaimsOptions options);
-  @JS() external _Promise<bool> isAuthenticated();
+  @JS() external _Promise<String?> getTokenWithPopup(GetTokenWithPopupOptions options, PopupConfigOptions config);
+  @JS() external _Promise<String?> getTokenSilently(GetTokenSilentlyOptions options);
+  @JS() external _Promise<Map<String, dynamic>?> getUser(GetUserOptions options);
+  @JS() external _Promise<Map<String, dynamic>?> getIdTokenClaims(GetIdTokenClaimsOptions options);
+  @JS() external _Promise<bool?> isAuthenticated();
 }
 
 class Auth0 {
